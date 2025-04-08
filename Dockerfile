@@ -2,13 +2,10 @@ FROM manjarolinux/base:latest
 
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
-
+RUN useradd -m ptzzx && echo "ptzzx:ptzzx" | chpasswd
 RUN pacman -Sy --noconfirm && \
     pacman -S --noconfirm base-devel git sudo ttf-dejavu noto-fonts ttf-liberation ttf-droid ttf-roboto mc doas yay && \
-    pacman -Scc --noconfirm
-
-RUN useradd -m ptzzx && echo "ptzzx:ptzzx" | chpasswd && \
-    echo "ptzzx ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+    pacman -Scc --noconfirm &&  echo "ptzzx ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 COPY entrypoint.sh /home/ptzzx/entrypoint.sh
 RUN chmod +x /home/ptzzx/entrypoint.sh

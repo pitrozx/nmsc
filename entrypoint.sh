@@ -15,5 +15,5 @@ if ! pacman -Q nomachine &> /dev/null; then
 else
   echo "NoMachine ya está instalado."
 fi
-export PATH=$PATH:/usr/nx
+export PATH=$PATH:/usr/NX/bin
 exec "$@"
